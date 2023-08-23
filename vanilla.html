@@ -5,15 +5,31 @@
   </body>
   <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
-  <script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
     const root = document.getElementById("root");
-    const h3 = React.createElement(
+    const Title = (
+      <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
+        Hello i'm a title
+      </h3>
+    );
+    /*     const h3 = React.createElement(
       "h3",
       {
         onMouseEnter: () => console.log("mouse enter"),
       },
       "Hello i'm a span"
-    );
+    ); */
+    const Button = (
+      <button
+        style={{
+          backgroundColor: "tomato",
+        }}
+        onClick={() => console.log("im clicked")}
+      >
+        Click me
+      </button>
+    ); /* 
     const btn = React.createElement(
       "button",
       {
@@ -23,8 +39,8 @@
         },
       },
       "Click me"
-    );
-    const container = React.createElement("div", null, [h3, btn]);
+    ); */
+    const container = React.createElement("div", null, [Title, Button]);
 
     // 위에 React element를 가지고 Html로 만들어 배치
     // 사용자에게 보여준다
