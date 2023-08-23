@@ -8,31 +8,18 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = document.getElementById("root");
-    let counter = 0;
-    function countUp() {
-      counter = counter + 1;
-      render();
-    }
-
-    function render() {
-      ReactDOM.render(<Container />, root);
-    }
-    function Container() {
+    function App() {
+      const [counter, setCounter] = React.useState(0);
+      const onClick = () => {
+        setCounter(counter + 1);
+      };
       return (
         <div>
           <h3>Total clicks: {counter}</h3>
-          <button onClick={countUp}>Click me</button>
+          <button onClick={onClick}>Click me</button>
         </div>
       );
     }
-    /* const Container = () => (
-      <div>
-        <h3>Total clicks: {counter}</h3>
-        <button onClick={countUp}>Click me</button>
-      </div>
-    ); */
-    // 위에 React element를 가지고 Html로 만들어 배치
-    // 사용자에게 보여준다
-    render();
+    ReactDOM.render(<App />, root);
   </script>
 </html>
