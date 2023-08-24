@@ -9,34 +9,48 @@
   <script type="text/babel">
     const root = document.getElementById("root");
     function App() {
-      const [minutes, setMinutes] = React.useState(0);
+      const [amount, setAmount] = React.useState(0);
+      const [inverted, setInverted] = React.useState(false);
       const onChange = (event) => {
-        setMinutes(event.target.value);
+        setAmount(event.target.value);
       };
-      const reset = () => setMinutes(0);
+      const reset = () => setAmount(0);
+      const onInvert = () => {
+        reset();
+        setInverted((current) => !current);
+      };
       return (
         <div>
           <h1>Super Converter</h1>
           <div>
             <label htmlfor="minutes">Minutes</label>
             <input
-              value={minutes}
+              value={inverted ? amount * 60 : amount}
               id="minutes"
               placeholder="Minutes"
               type="number"
               onChange={onChange}
+              //disabled={inverted === true}
+              disabled={inverted}
             />
           </div>
           <div>
             <label htmlfor="hours">Hours</label>
             <input
-              value={Math.round(minutes / 60)}
+              //inverted 상태라는 얘기는 Hours input에다가 입력한다는거임
+              value={inverted ? amount : Math.round(amount / 60)}
               id="hours"
               placeholder="Hours"
               type="number"
+              //disabled={inverted === false} 기능은 같은데 더 짧다
+              disabled={!inverted}
+              onChange={onChange}
             />
           </div>
           <button onClick={reset}>Reset</button>
+          <button onClick={onInvert}>
+            {inverted ? "Turn back" : "Invert"}
+          </button>
         </div>
       );
     }
